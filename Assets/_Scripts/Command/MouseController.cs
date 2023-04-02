@@ -49,7 +49,7 @@ public class MouseController : Singleton<MouseController>
     {
         var mousePos = Input.mousePosition;
         var mouseRay = Camera.main.ScreenPointToRay(mousePos);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.up);
+        var groundPlane = new Plane(Vector3.up, Vector3.up);
         if(groundPlane.Raycast(mouseRay, out float distance))
         {
             var point = mouseRay.GetPoint(distance);

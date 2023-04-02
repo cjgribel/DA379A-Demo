@@ -3,38 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
-[RequireComponent(typeof(PlayerState))]
+[RequireComponent(typeof(PlayerState), typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private PlayerState m_playerState;
+    private Animator _animator;
+    [SerializeField]
+    private PlayerState _playerState;
     [ReadOnly]
-    private IPlayerState m_state;
+    private IPlayerState _state;
 
     private void Start()
     {
-        m_state = new MoveState();
+        _state = new MoveState();
     }
 
     private void Update()
     {
-        var nextState = m_state.CheckTransition(m_playerState);
-        if(nextState != m_state)
+        var nextState = _state.CheckTransition(_playerState);
+        if(nextState != _state)
         {
-            m_state.StateLeave(m_playerState);
-            m_state = nextState;
-            m_state.StateEnter(m_playerState);
+            _state.StateLeave(_playerState);
+            _state = nextState;
+            _state.StateEnter(_playerState);
         }
-        m_state.StateUpdate(m_playerState);
+        _state.StateUpdate(_playerState);
+    }
+
+    /// <summary>
+    /// This is just to show a visual preview of the states
+    /// </summary>
+    private void LateUpdate()
+    {
+        _animator.SetFloat("YVel", _playerState.Velocity.y);
+        _animator.SetFloat("YPos", transform.position.y);
+        if(Input.GetButtonDown("Jump"))
+        {
+            _animator.SetTrigger("JumpPressed");
+        }
+        else
+        {
+            _animator.ResetTrigger("JumpPressed");
+        }
     }
 
     private void FixedUpdate()
     {
-        transform.position += new Vector3(m_playerState.Velocity.x * Time.fixedDeltaTime, m_playerState.Velocity.y * Time.fixedDeltaTime);
+        transform.position += new Vector3(_playerState.Velocity.x * Time.fixedDeltaTime, _playerState.Velocity.y * Time.fixedDeltaTime);
     }
 
     private void Reset()
     {
-        m_playerState = GetComponent<PlayerState>();
+        _playerState = GetComponent<PlayerState>();
+        _animator = GetComponent<Animator>();
     }
 }

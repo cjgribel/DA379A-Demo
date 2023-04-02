@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 1345690985}
   - component: {fileID: 1345690984}
   - component: {fileID: 1345690983}
+  - component: {fileID: 1345690989}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -334,7 +335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea21666d41b2269499af213c3c6454fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerState: {fileID: 1345690984}
+  _animator: {fileID: 1345690989}
+  _playerState: {fileID: 1345690984}
 --- !u!114 &1345690984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,3 +431,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1345690989
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345690982}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: baa5fdd3d3636264b91d4f62342849ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
