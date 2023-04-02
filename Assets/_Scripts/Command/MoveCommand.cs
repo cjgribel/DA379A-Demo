@@ -9,6 +9,11 @@ public class MoveCommand : ICommand
     private Vector3 _target;
     public MoveCommand(Vector3 target) => _target = target;
 
+    /// <summary>
+    /// Excecutes the command
+    /// </summary>
+    /// <param name="unit"> The unit that runs the command </param>
+    /// <returns> True if the command is completed </returns>
     public bool Execute(Unit unit)
     {
         var position = unit.transform.position;
@@ -37,6 +42,9 @@ public class MoveCommand : ICommand
         return true;
     }
 
+    /// <summary>
+    /// Just for visual feedback in the Editor
+    /// </summary>
     public void DrawGizmo(Unit unit)
     {
         Gizmos.DrawWireSphere(_target, 0.5f);

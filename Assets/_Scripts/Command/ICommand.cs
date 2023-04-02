@@ -11,5 +11,8 @@ public interface ICommand
     /// <returns> True if the command is completed </returns>
     bool Execute(Unit unit);
 
+    /// <summary>
+    /// Just for visual feedback in the Editor
+    /// </summary>
     void DrawGizmo(Unit unit);
 }

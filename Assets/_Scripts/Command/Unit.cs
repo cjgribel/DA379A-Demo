@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour
     [ShowNativeProperty]
     public int QueuedCommands => _commandQueue.Count;
 
-    private Queue<ICommand> _commandQueue = new();
+    private readonly Queue<ICommand> _commandQueue = new();
     private ICommand _currentCommand = null;
 
     public void QueueCommand(ICommand command) => _commandQueue.Enqueue(command);
@@ -54,5 +54,4 @@ public class Unit : MonoBehaviour
             index = Mathf.Min(++index, colours.Length - 1);
         }
     }
-
 }

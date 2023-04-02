@@ -10,6 +10,7 @@ public class MouseController : Singleton<MouseController>
 
     private void Update()
     {
+        // Select a unit
         if(Input.GetMouseButtonDown(0))
         {
             var go = GetMouseOver();
@@ -22,10 +23,14 @@ public class MouseController : Singleton<MouseController>
                 _selectedUnit = null;
             }
         }
+
+        // Move selected unit
         if(Input.GetMouseButtonDown(1))
         {
             if (_selectedUnit == null) return;
             var target = GetMouseInWorld();
+
+            // Add a new move command with the mouse position (in world) as a target
             var command = new MoveCommand(target);
             if(Input.GetKey(KeyCode.LeftShift))
                 _selectedUnit.QueueCommand(command);
@@ -34,6 +39,9 @@ public class MouseController : Singleton<MouseController>
         }
     }
 
+    /// <summary>
+    /// Get the GameObject underneeth the mouse
+    /// </summary>
     private static GameObject GetMouseOver()
     {
         var mousePos = Input.mousePosition;
@@ -45,6 +53,9 @@ public class MouseController : Singleton<MouseController>
         return null;
     }
 
+    /// <summary>
+    /// Get the map position underneeth the mouse
+    /// </summary>
     private static Vector3 GetMouseInWorld()
     {
         var mousePos = Input.mousePosition;
