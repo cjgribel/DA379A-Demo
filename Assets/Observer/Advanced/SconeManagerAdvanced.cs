@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SconeManagerAdvanced : MonoBehaviour
@@ -8,15 +6,9 @@ public class SconeManagerAdvanced : MonoBehaviour
     [SerializeField] private IntEventSO _scoreUpdatedEvent;
     private int _currentScore = 0;
 
-    private void Start()
-    {
-        _scoreAddedEvent.Event += UpdateScore;
-    }
+    private void Start() => _scoreAddedEvent.Event += UpdateScore;
 
-    private void OnDestroy()
-    {
-        _scoreAddedEvent.Event -= UpdateScore;
-    }
+    private void OnDestroy() => _scoreAddedEvent.Event -= UpdateScore;
 
     private void UpdateScore(int addedScore)
     {

@@ -1,16 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Pickup : MonoBehaviour
+public class PickupSingleton : MonoBehaviour
 {
-    [SerializeField] private ScoreController _scoreUI;
-
     [SerializeField] private int _scoreValue = 2;
 
     private void OnTriggerEnter(Collider other) 
     {
         if(other.CompareTag("Player"))
         {
-            _scoreUI.AddScore(_scoreValue);
+            ScoreController.Instance.AddScore(_scoreValue);
             Destroy(gameObject);
         }
     }
